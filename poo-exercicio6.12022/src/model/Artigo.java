@@ -1,10 +1,12 @@
 package model;
 
+import interfaces.TaxaPublicacao;
 
-public class Artigo extends Submissao{
+public class Artigo extends Submissao implements TaxaPublicacao{
 	
 	private String resumo;
 	static int numeroArtigos;
+	private boolean pagTaxa;
 	
 	public Artigo() {
 		super();
@@ -27,6 +29,17 @@ public class Artigo extends Submissao{
 	
 	private static void incrementarNumeroArtigos() {
 		numeroArtigos++;
+	}
+
+	@Override
+	public float getTaxaSubmissao() {
+		aplicarTaxa();
+		return 21.50f;
+	}
+
+	@Override
+	public boolean aplicarTaxa() {
+		return pagTaxa = true;
 	}
 
 	

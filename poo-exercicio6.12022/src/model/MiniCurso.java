@@ -2,13 +2,16 @@ package model;
 
 import java.util.Date;
 
-public class MiniCurso extends Submissao{
+import interfaces.TaxaPublicacao;
+
+public class MiniCurso extends Submissao implements TaxaPublicacao{
 	
 	private int horas;
 	private Date data;
 	private Date horaInicio;
 	private Date horaFim;
 	static int numeroMiniCurso;
+	private boolean pagTaxa;
 	
 	public MiniCurso() {
 		super();
@@ -58,6 +61,17 @@ public class MiniCurso extends Submissao{
 
 	private static void incrementarNumeroMiniCurso() {
 		numeroMiniCurso++;
+	}
+
+	@Override
+	public float getTaxaSubmissao() {
+		aplicarTaxa();
+		return 15.00f;
+	}
+
+	@Override
+	public boolean aplicarTaxa() {
+		return pagTaxa = true;
 	}
 
 }
